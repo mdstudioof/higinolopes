@@ -50,6 +50,20 @@ create table if not exists settings (
   constraint single_row check (id = 1)
 );
 
+-- ─── Row Level Security (desabilitar para acesso com anon key) ───────────────
+-- IMPORTANTE: Execute este bloco no SQL Editor do Supabase
+alter table products        disable row level security;
+alter table app_users       disable row level security;
+alter table orders          disable row level security;
+alter table order_items     disable row level security;
+alter table settings        disable row level security;
+
+-- ─── Habilitar Realtime ───────────────────────────────────────────────────────
+alter publication supabase_realtime add table products;
+alter publication supabase_realtime add table orders;
+alter publication supabase_realtime add table order_items;
+alter publication supabase_realtime add table settings;
+
 -- ─── Dados Iniciais ──────────────────────────────────────────────────────────
 
 -- Configurações padrão
