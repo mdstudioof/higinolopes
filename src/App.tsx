@@ -58,6 +58,19 @@ const App: React.FC = () => {
     fetchInitial();
   }, []);
 
+  // ── Favicon dinâmico ──────────────────────────────────────────────────────
+  useEffect(() => {
+    const favicon = document.getElementById("favicon") as HTMLLinkElement | null;
+    if (!favicon) return;
+    if (settings.logoUrl) {
+      favicon.href = settings.logoUrl;
+      favicon.type = "image/png";
+    } else {
+      favicon.href = "/favicon.ico";
+      favicon.type = "image/x-icon";
+    }
+  }, [settings.logoUrl]);
+
   // ── Supabase Realtime ─────────────────────────────────────────────────────
   useEffect(() => {
     // Produtos em tempo real
