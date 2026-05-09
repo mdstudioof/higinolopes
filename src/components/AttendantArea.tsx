@@ -8,7 +8,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plus, Minus, ShoppingCart, Send, Search, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { toast } from "sonner";
-import { printTicket } from "@/lib/printTicket";
 
 interface AttendantAreaProps {
   products: Product[];
@@ -91,8 +90,7 @@ const AttendantArea: React.FC<AttendantAreaProps> = ({ products, user }) => {
         attendantId: fullOrder.attendant_id,
         attendantName: fullOrder.attendant_name,
       };
-      printTicket(mapped);
-      toast.success(`Pedido #${mapped.number} enviado e ficha impressa!`);
+      toast.success(`Pedido #${mapped.number} enviado com sucesso!`);
     }
 
     setCart([]);
